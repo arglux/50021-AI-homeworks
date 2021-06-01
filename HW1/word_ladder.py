@@ -82,5 +82,5 @@ if __name__ == "__main__":
 	for startWord, goalWord in test_cases:
 		problem = WordLadderProblem(startWord, goalWord, WORDS)
 		solution = problem.solve()
-		print(solution)
+		print(f"{startWord} -> {solution} -> {goalWord}")
 
