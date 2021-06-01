@@ -59,6 +59,9 @@ class FlightItineraryProblem(Problem):
 		except AttributeError as err: return f"No solution found. {err}"
 
 	def find_shortest_itinerary(self, deadline=99):
+		"""
+		Part 4. Returns shortest itinerary (list of Flights) by repeatedly calling find_itinerary with slowly increasing deadline, stopping on the first valid itinerary.
+		"""
 		end_city = self.goal[0]
 		for d in range(deadline):
 			self.goal = (end_city, d)
