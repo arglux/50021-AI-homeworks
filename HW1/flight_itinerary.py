@@ -87,7 +87,7 @@ if __name__ == "__main__":
 		Flight('Rome', 1, 'London', 10),
 		Flight('Rome', 1, 'Oslo', 10),
 		Flight('Rome', 1, 'Istanbul', 10),
-		Flight('Rome', 1, 'Indonesia', 10)
+		# Flight('Rome', 1, 'Indonesia', 10)
 	]
 
 	print("Part 3. Testing: find_itinerary()")
@@ -96,7 +96,9 @@ if __name__ == "__main__":
 		solution = problem.find_itinerary()
 		print(solution)
 
-	print("Part 4. Testing: find_shortest_itinerary()")
+	print("find_shortest_itinerary() `calls find_itinerary() as many times as the shortest path.")
+	print("If shortest path 100 takes x calls, then 200 takes 2x calls.")
+	print(f"Part 4. Testing: find_shortest_itinerary() for {Flight('Rome', 1, 'Istanbul', 10)}")
 	problem = FlightItineraryProblem(Flight('Rome', 1, 'Istanbul', 10), flightDB)
 	solution = problem.find_shortest_itinerary()
 	print(solution)
