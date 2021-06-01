@@ -11,8 +11,8 @@ class WordLadderProblem(GraphProblem):
 	Class that implements Word Ladder Problem as Graph Problem
 
 	Args:
-		- startWord : str
-		- goalWord : str
+		- start_word : str
+		- goal_word : str
 		- WORDS : set (set of all posible words)
 
 	The main work that this class does is generating an Undirected Graph of how words are connected
@@ -25,11 +25,11 @@ class WordLadderProblem(GraphProblem):
 				e.g. {CO*D : [COLD, CORD, ...], ...}
 		3. Finally, simply build the dictionary to pass into UndirectedGraph's constructor
 	"""
-	def __init__(self, startWord, goalWord, WORDS):
+	def __init__(self, start_word, goal_word, WORDS):
 		try:
-			self.check(startWord, goalWord, WORDS)
+			self.check(start_word, goal_word, WORDS)
 			self.preprocess(WORDS)
-			super().__init__(startWord, goalWord, self.wordGraph)
+			super().__init__(start_word, goal_word, self.word_graph)
 
 		except AssertionError as err: print(err)
 
@@ -37,36 +37,36 @@ class WordLadderProblem(GraphProblem):
 		return breadth_first_search(self).solution()
 
 	def preprocess(self, WORDS):
-		self.wordDict = self.buildDict(WORDS)
-		self.wordGraph = self.buildGraph(self.wordDict)
-		return self.wordGraph
+		self.word_dict = self.build_dict(WORDS)
+		self.word_graph = self.build_graph(self.word_dict)
+		return self.word_graph
 
-	def buildDict(self, WORDS):
-		wordDict = defaultdict(list)
+	def build_dict(self, WORDS):
+		word_dict = defaultdict(list)
 		for word in WORDS:
 			if len(word) == self.length: # just checks words of that length
 				for i in range(self.length):
-					wordDict[ word[:i] + "*" + word[i+1:] ].append(word)
+					word_dict[ word[:i] + "*" + word[i+1:] ].append(word)
 					# e.g. {CO*D : [COLD, CORD, ...], ...}
-		return wordDict
+		return word_dict
 
-	def buildGraph(self, wordDict):
-		wordGraph = defaultdict(dict)
-		for intermediateWord in wordDict.keys():
-			for word1 in wordDict[intermediateWord]:
-				for word2 in wordDict[intermediateWord]:
+	def build_graph(self, word_dict):
+		word_graph = defaultdict(dict)
+		for intermediate_word in word_dict.keys():
+			for word1 in word_dict[intermediate_word]:
+				for word2 in word_dict[intermediate_word]:
 					if word1 != word2:
-						wordGraph[word1][word2] = 1
+						word_graph[word1][word2] = 1
 						# connect 1 word to every other word in a dictionary
 						# {'lilt': {'kilt': 1, 'gilt': 1, 'jilt': 1, ...}, ...}
-		return Graph(wordGraph, directed=False)
+		return Graph(word_graph, directed=False)
 
-	def check(self, startWord, goalWord, WORDS):
-		assert len(startWord) == len(goalWord), "Length of start and end words must be the same!"
-		assert self.is_valid_word(startWord)
-		assert self.is_valid_word(goalWord)
+	def check(self, start_word, goal_word, WORDS):
+		assert len(start_word) == len(goal_word), "Length of start and end words must be the same!"
+		assert self.is_valid_word(start_word)
+		assert self.is_valid_word(goal_word)
 
-		self.length = len(startWord)
+		self.length = len(start_word)
 		print(f"Valid Problem! Word length: {self.length}")
 
 	def is_valid_word(self, word):
@@ -79,8 +79,8 @@ if __name__ == "__main__":
 		("best", "math"),
 	]
 
-	for startWord, goalWord in test_cases:
-		problem = WordLadderProblem(startWord, goalWord, WORDS)
+	for start_word, goal_word in test_cases:
+		problem = WordLadderProblem(start_word, goal_word, WORDS)
 		solution = problem.solve()
-		print(f"{startWord} -> {solution} -> {goalWord}")
+		print(f"{start_word} -> {solution} -> {goal_word}")
 
