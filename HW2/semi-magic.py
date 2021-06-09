@@ -80,6 +80,6 @@ def test():
 if __name__ == '__main__':
 	test()
 	print()
-	print('Most algorithm finds the answer with the minimum amount of assignments possible, i.e: 9 because the problem is very simple.')
+	print('Most algorithm finds the answer with the minimum amount of assignments possible, i.e: 9 because the problem is very simple and the first path of value assignment is a solution already.')
 	print('However, Minimum Remaining Values Heuristic can sometimes use up a lot of assignments, i.e: 33 assignments.')
 	print('MRV makes the solver explores branches that do not result in solution, causing backtracking and additional assignments.')
