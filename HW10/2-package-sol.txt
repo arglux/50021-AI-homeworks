@@ -1,0 +1,7 @@
+(move tampines changi)
+(pick package2 changi truck1)
+(move changi bedok)
+(drop package2 bedok truck1)
+(pick package1 bedok truck1)
+(move bedok changi)
+(drop package1 changi truck1)
